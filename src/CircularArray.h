@@ -27,7 +27,7 @@ public:
             this->arr[this->start] = element;
             this->start = (this->start + 1 + this->capacity) % this->capacity;
         }
-    } // 0 oldest, last newe
+    } // 0 oldest, last new
 
     T pop() {
         if (this->size == 0) {
@@ -40,17 +40,26 @@ public:
         return el;
     }
 
-    T& operator[](const int i) {
+    T& operator[](const int _i) {
+        int i = _i;
+        if (i < 0) {
+            i += this->capacity;
+        }
+        
         int j = (i + this->start) % this->capacity;
         return this->arr[j];
     }
 
-    const T& operator[](const int i) const {
+    const T& operator[](const int _i) const {
+        int i = _i;
+        if (i < 0) {
+            i += this->capacity;
+        }
+
         int j = (i + this->start) % this->capacity;
         return this->arr[j];
     }
 
-    
     int start;
     int size;
 
