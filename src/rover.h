@@ -20,6 +20,7 @@ class Rover
         void obstacleAvoidance();
         void sensorCollection();
         void sensorTransmission();
+        void turn();
 };
 
 #endif
