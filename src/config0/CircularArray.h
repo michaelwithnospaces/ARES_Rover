@@ -59,9 +59,51 @@ public:
         return this->arr[j];
     }
 
+    T* getArray() {
+        T* arr = new T[this->size];
+        for (int i = 0; i < this->size; i++) {
+            arr[i] = this->arr[(this->start + i) % this->capacity];
+        }
+        return arr;
+    }
+
+    double median() {
+        T* arr = this->sorted();
+
+        double median;
+        if (this->size % 2 == 0) {
+            median = (arr[this->size / 2 - 1] + arr[this->size / 2]) / 2.0;
+        } else {
+            median = arr[this->size / 2];
+        }
+
+        delete[] arr;
+
+        return median;
+    }
+
     int start;
     int size;
 
 private:
     T* arr; // internal array that actually holds data
+
+    void sort(T*& arr) {
+        // insertion sort
+        for (int i = 1; i < this->size; i++) {
+            T key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
+    T* sorted() {
+        T* arr = this->getArray();
+        this->sort(arr);
+        return arr;
+    }
 };
