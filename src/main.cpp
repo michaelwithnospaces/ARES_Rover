@@ -17,7 +17,7 @@ int state = 0;
 void setup()
 {
   // initialize motors and servos for driving
-  rover.setState(4);
+  rover.setState(0);
 }
 
 void loop()
@@ -27,7 +27,6 @@ void loop()
   case 0: // detect beacon
 
     rover.detectBeacon();
-    rover.setState(1);
 
   case 1: // enter traversal
     rover.traversal();
