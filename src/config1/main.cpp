@@ -7,7 +7,7 @@ Adafruit_LPS22 lps;
 Adafruit_Sensor *lps_temp, *lps_pressure;
 
 void setup(void) {
-  Serial.begin(9600);
+  Serial.begin(115200);
   while (!Serial)
     delay(10); // will pause Zero, Leonardo, etc until serial console opens
 
