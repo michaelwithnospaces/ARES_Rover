@@ -3,11 +3,11 @@
 #include <Adafruit_LPS2X.h>
 
 // Use LPS25 or LPS22 here
-Adafruit_LPS25 lps;
+Adafruit_LPS22 lps;
 Adafruit_Sensor *lps_temp, *lps_pressure;
 
 void setup(void) {
-  Serial.begin(115200);
+  Serial.begin(9600);
   while (!Serial)
     delay(10); // will pause Zero, Leonardo, etc until serial console opens
 
