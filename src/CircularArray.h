@@ -1,7 +1,3 @@
-#include <iostream>
-
-using std::cout, std::endl;
-
 template <typename T>
 class CircularArray {
 public:
