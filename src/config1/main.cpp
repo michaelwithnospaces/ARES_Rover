@@ -30,29 +30,14 @@ void setup(void) {
 
 void loop() {
   //  /* Get a new normalized sensor event */
-  sensors_event_t pressure;
-  sensors_event_t temp;
-  lps_temp->getEvent(&temp);
-  lps_pressure->getEvent(&pressure);
+  sensors_event_t pressure_ev;
+  sensors_event_t temp_ev;
+  lps_temp->getEvent(&temp_ev);
+  lps_pressure->getEvent(&pressure_ev);
 
-  Serial.print("\t\tTemperature ");
-  Serial.print(temp.temperature);
-  Serial.println(" deg C");
+  double pres = pressure_ev.pressure;
+  double temp = temp_ev.temperature;
 
-  /* Display the results (pressure is measured in hPa) */
-  Serial.print("\t\tPressure: ");Serial.print(pressure.pressure);Serial.println(" hPa");
-  Serial.print("\t\tTemperature: ");Serial.print(temp.temperature);Serial.println(" degrees C");
-
-
-  delay(100);
-
-  /*//   serial plotter friendly format
-  Serial.print(temp.temperature);
-  Serial.print(",");
-
-  Serial.print(pressure.pressure);
-
-  Serial.println();
+  Serial.println(String(temp) + ", " + String(pres));
   delay(10);
-  */
 }
