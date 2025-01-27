@@ -49,6 +49,17 @@ public:
         return this->arr[j];
     }
 
+    // Allows access like a normal array
+    T& at(const int _i) {
+        int i = _i;
+        if (i < 0) { // allows for python-style negative indexing
+            i += this->capacity;
+        }
+        
+        int j = (i + this->start) % this->capacity;
+        return this->arr[j];
+    }
+
     const T& operator[](const int _i) const {
         int i = _i;
         if (i < 0) {
@@ -84,6 +95,34 @@ public:
 
     int start;
     int size;
+
+    double* derivative(double t) {
+        if (this->size <= 2) {
+            throw "Too few data points to find single derivative";
+        }
+
+        double* arr = new double[this->size - 2];
+        
+        for (int i = 0; i < this->size - 2; ++i) {
+            arr[i] = (this->at(i + 2) - this->at(i)) / (2 * t);
+        }
+        return arr;
+    }
+
+    double* doubleDerivative(double t) {
+        if (this->size <= 4) {
+            throw "Too few data points to find double derivative";
+        }
+
+        double* arr = new double[this->size - 4];
+        double* deriv = this->derivative(t);
+
+        for (int i = 0; i < this->size - 4; ++i) {
+            arr[i] = (deriv[i + 2] - deriv[i]) / (2 * t);
+        }
+
+        return arr;
+    }
 
 private:
     T* arr; // internal array that actually holds data
