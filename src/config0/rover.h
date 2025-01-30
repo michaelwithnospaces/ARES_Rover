@@ -1,6 +1,8 @@
 #ifndef rover_h
 #define rover_h
 
+#include "sensor.h"
+
 class Rover
 {
     private:
@@ -9,6 +11,10 @@ class Rover
         
         int beaconAngle;
         float beaconDistance;
+
+        Sensor sensor;  // Sensor object
+        char telemetryBuffer[150];  // Buffer to store telemetry data
+
     public:
         Rover();
 

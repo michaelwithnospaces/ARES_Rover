@@ -29,12 +29,12 @@ void Rover::obstacleAvoidance()
 
 void Rover::sensorCollection()
 {
-    // TODO
+    sensor.createPacket(telemetryBuffer, sizeof(telemetryBuffer));
 }
 
 void Rover::sensorTransmission()
 {
-    // TODO
+    Serial.print(telemetryBuffer);
 }
 
 void Rover::detectBeacon()
