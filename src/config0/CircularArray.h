@@ -28,7 +28,7 @@ public:
 
     T pop() {
         if (this->size == 0) {
-            throw "Cant' pop from an empty circular array";
+            throw "Can't pop from an empty circular array";
         }
 
         // Acccess and return element at the "start", decrease size
@@ -49,8 +49,14 @@ public:
         return this->arr[j];
     }
 
-    // Allows access like a normal array
+    /**
+     * Funtionally equivalent to using [], just with bounds checking
+     */
     T& at(const int _i) {
+        if (i >= this->size || (i < 0 && i < -this->size)) {
+            throw "Index out of bounds";
+        }
+
         int i = _i;
         if (i < 0) { // allows for python-style negative indexing
             i += this->capacity;
@@ -78,6 +84,9 @@ public:
         return arr;
     }
 
+    /**
+     * Calculates and returns the median of the data in the array.
+     */
     double median() {
         T* arr = this->sorted();
 
@@ -109,6 +118,11 @@ public:
         return arr;
     }
 
+    /**
+     * Gets the second derivative of the data in the array.
+     * Returns a double array with (n - 4) elements, where n is the size of the circular array
+     * To access the most recent entry, use arr[n - 4] (i.e. the last element in the array)
+     */
     double* doubleDerivative(double t) {
         if (this->size <= 4) {
             throw "Too few data points to find double derivative";
