@@ -37,8 +37,6 @@ void Sensor::createPacket(char* buffer)
         getUVIndex(),
         getWindSpeed(),
         getBatteryVoltage(),
-        getTemperature(),
-        getHumidity(),
-        getPressure()
+        getTemperature()
     );
 }

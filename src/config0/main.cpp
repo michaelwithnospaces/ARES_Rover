@@ -11,7 +11,7 @@ int state = 0;
     - Sensor collection start       (collection)    3
     - Sensor data transmission      (transmission)  4
     - End mission                   (end)           5
-  */
+*/
 
 void setup()
 {
