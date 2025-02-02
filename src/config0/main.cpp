@@ -2,15 +2,14 @@
 #include "rover.h"
 
 Rover rover;
-int state = 0;
+
 /*
   State Manager: (subject to change)
     - Detect direction of beacon    (beacon)        0
     - Traversal                     (traversal)     1
     - Object avoidance              (avoidance)     2 
-    - Sensor collection start       (collection)    3
-    - Sensor data transmission      (transmission)  4
-    - End mission                   (end)           5
+    - Sensor collection             (collection)    3
+    - End mission                   (end)           4
   */
 
 void setup()
@@ -34,13 +33,10 @@ void loop()
 
   case 3:
     rover.sensorCollection();
-    rover.setState(5);
+    rover.sensorTransmission();
 
   case 4:
-    rover.sensorTransmission();
-    rover.setState(5);
-
-  case 5:
     break;
+
   }
 }
