@@ -4,6 +4,8 @@
 // Include Sensors
 #include <Wire.h>
 
+#include "CircularArray.h";
+
 class Sensor {
 public:
     // Constructor
@@ -18,6 +20,9 @@ public:
     float getWindSpeed();
     float getBatteryVoltage();
     float getTemperature();
+
+    CircularArray<int> proximity;
+    CircularArray<float> heading;
 
     // Data packet creation
     void createPacket(char* buffer);

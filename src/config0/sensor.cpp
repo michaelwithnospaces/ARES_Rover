@@ -1,12 +1,16 @@
 #include "sensor.h"
 
-Sensor::Sensor() {}
+Sensor::Sensor(): proximity(10), heading(10) {}
 
 void Sensor::begin() {}
 
-int Sensor::getProximity() {}
+int Sensor::getProximity() {
+    proximity.push(0); // TODO: replace with actual sensor reading
+}
 
-float Sensor::getHeading() {}
+float Sensor::getHeading() {
+    heading.push(0); // TODO: replace with actual sensor reading
+}
 
 float Sensor::getWindSpeed() {}
 
