@@ -1,9 +1,10 @@
-#include "Arduino.h"
+// #include "Arduino.h"
 #include "rover.h"
-#include <iostream>
-using namespace std;
+#include <Arduino.h>
 
 Rover rover;
+
+bool end;
 bool obst;
 bool heading;
 bool loc;
@@ -26,13 +27,17 @@ void setup()
 
 void loop()
 {
+  std::cout << "terminate? (0 = no, 1 = yes): "
+  std::cin >> end;
+  if(end) break;
+  
   obst, heading, loc = false;
-  std::cout << "set bool value for obstDetected (0 = false, 1 = true): ";
-  std::cin >> obst;
-  std::cout << "set bool value for hasHeading (0 = false, 1 = true): ";
-  std::cin >> heading;
-  std::cout << "set bool value for atDest (0 = false, 1 = true): ";
-  std::cin >> loc;
+  Serial.print("set bool value for obstDetected (0 = false, 1 = true): ");
+  obst = Serial.read();
+  Serial.print("set bool value for hasHeading (0 = false, 1 = true): ");
+  heading = Serial.read();
+  Serial.print("set bool value for atDest (0 = false, 1 = true): ");
+  loc = Serial.read();
 
   rover.setConditions(obst, heading, loc);
   
@@ -56,5 +61,11 @@ void loop()
 
   }
   
-  std::cout << "Current State: " << rover.getState();
+  Serial.println("Current State: " + rover.getState());
+}
+
+int main(){
+    setup();
+    loop();
+    Serial.print("Complete");
 }

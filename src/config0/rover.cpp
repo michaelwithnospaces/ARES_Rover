@@ -46,9 +46,8 @@ void Rover::obstacleAvoidance()
 
 void Rover::sensorCollection()
 {
-    sensor.createPacket(telemetryBuffer, sizeof(telemetryBuffer));
+    sensor.createPacket(telemetryBuffer);
     sensorTransmission();
-    
 }
 
 void Rover::sensorTransmission()

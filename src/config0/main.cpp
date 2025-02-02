@@ -8,9 +8,16 @@ Rover rover;
     - Detect direction of beacon    (beacon)        0
     - Traversal                     (traversal)     1
     - Object avoidance              (avoidance)     2 
+<<<<<<< HEAD
     - Sensor collection             (collection)    3
     - End mission                   (end)           4
   */
+=======
+    - Sensor collection start       (collection)    3
+    - Sensor data transmission      (transmission)  4
+    - End mission                   (end)           5
+*/
+>>>>>>> cc009f1171e75a212b921c558284b31d9747990b
 
 void setup()
 {
