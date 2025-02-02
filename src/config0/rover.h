@@ -13,7 +13,7 @@ class Rover
         float beaconDistance;
 
         Sensor sensor;  // Sensor object
-        char telemetryBuffer[150];  // Buffer to store telemetry data
+        char telemetryBuffer[49];  // Buffer to store telemetry data
 
     public:
         Rover();
