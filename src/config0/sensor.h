@@ -14,15 +14,13 @@ public:
 
     // Sensor getters
     int getProximity();
-    float getUVIndex();
+    float getHeading();
     float getWindSpeed();
     float getBatteryVoltage();
     float getTemperature();
-    float getHumidity();
-    float getPressure();
 
     // Data packet creation
-    void createPacket(char* buffer, size_t bufferSize);
+    void createPacket(char* buffer);
 
 };
 
