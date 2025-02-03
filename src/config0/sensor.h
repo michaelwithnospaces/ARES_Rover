@@ -21,7 +21,8 @@ public:
     float getBatteryVoltage();
     float getTemperature();
 
-    CircularArray<int> proximity;
+    CircularArray<int> proximityL;
+    CircularArray<int> proximityR;
     CircularArray<float> heading;
 
     // Data packet creation

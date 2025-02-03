@@ -1,11 +1,12 @@
 #include "sensor.h"
 
-Sensor::Sensor(): proximity(10), heading(10) {}
+Sensor::Sensor(): proximityL(10), proximityR(10), heading(10) {}
 
 void Sensor::begin() {}
 
 int Sensor::getProximity() {
-    proximity.push(0); // TODO: replace with actual sensor reading
+    proximityL.push(0); // TODO: replace with actual sensor reading
+    proximityR.push(0); // TODO: replace with actual sensor reading
 }
 
 float Sensor::getHeading() {
