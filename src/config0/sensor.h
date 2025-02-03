@@ -15,14 +15,16 @@ public:
     void begin();
 
     // Sensor getters
-    int getProximity();
+    float getBeaconDistance();
+    float* getProximity();
     float getHeading();
     float getWindSpeed();
     float getBatteryVoltage();
     float getTemperature();
 
-    CircularArray<int> proximityL;
-    CircularArray<int> proximityR;
+    CircularArray<float> beaconDistance;
+    CircularArray<float> proximityL;
+    CircularArray<float> proximityR;
     CircularArray<float> heading;
 
     // Data packet creation
