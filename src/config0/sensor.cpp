@@ -1,5 +1,11 @@
 #include "sensor.h"
+#include "Adafruit_BME280.h"
+#include "Arduino.h"
 
+#define analogRVPin 1
+#define analogTMPPin 0
+
+Adafruit_BME280 bme;
 Sensor::Sensor(): proximityL(10), proximityR(10), heading(10), beaconDistance(10) {}
 
 void Sensor::begin() {}
@@ -18,11 +24,35 @@ float Sensor::getHeading() {
     heading.push(0); // TODO: replace with actual sensor reading
 }
 
-float Sensor::getWindSpeed() {}
+float Sensor::getWindSpeed() {
+    const float noWindAdjustment =  .2; // calibrates sensor at eqillibrium
+    
+    int TMP_Therm_ADunits;  //temp termistor value from wind sensor
+    float RV_Wind_ADunits;  //RV output from wind sensor 
+    float RV_Wind_Volts, zeroWind_ADunits, noWindvolts, WindSpeed_MPH;
+    unsigned long lastMillis;
+    int TempCtimes100;
+    TMP_Therm_ADunits = analogRead(analogTMPPin);
+    RV_Wind_ADunits = analogRead(analogRVPin);
+    RV_Wind_Volts = (RV_Wind_ADunits *  0.0048828125);
+
+    TempCtimes100 = (0.005 *((float)TMP_Therm_ADunits * (float)TMP_Therm_ADunits)) - (16.862 * (float)TMP_Therm_ADunits) + 9075.4;  
+
+    zeroWind_ADunits = -0.0006*((float)TMP_Therm_ADunits * (float)TMP_Therm_ADunits) + 1.0727 * (float)TMP_Therm_ADunits + 47.172;  //  13.0C  553  482.39
+
+    noWindvolts = (zeroWind_ADunits * 0.0048828125) - noWindAdjustment;
+
+    WindSpeed_MPH =  pow(((RV_Wind_Volts - noWindvolts) /.2300) , 2.7265); //wind speed in mph
+
+    return(WindSpeed_MPH);
+}
 
 float Sensor::getBatteryVoltage() {}
 
-float Sensor::getTemperature() {}
+float Sensor::getTemperature() {
+    bme.readTemperature();
+
+}
 
 // Creates a telemetry packet in a 49-char buffer
 void Sensor::createPacket(char* buffer) 
